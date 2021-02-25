@@ -4,12 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import DownloadFile from "./components/DownloadFile";
+import DownloadMultiFile from "./components/DownloadMultiFile";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <DownloadFile />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <DownloadMultiFile/>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
