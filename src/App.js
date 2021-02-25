@@ -1,30 +1,47 @@
-import logo from './logo.svg';
 import './App.css';
-import React, {useState} from "react";
-
-function returnImage(event) {
-    return URL.createObjectURL(event.target.files[0]);
-}
-
-function returnImageName(event) {
-    return event.target.files[0].name;
-}
-
+import React from "react";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import DownloadMultiFile from "./components/DownloadMultiFile";
+import ChangeMultiFileName from "./components/ChangeMultiFileName";
 function App() {
-    const [imgURL, setImage] = useState(logo);
-    const [fileName, getFileName] = useState('default');
-    console.log(imgURL);
-    return (
-        <div className="App">
-            <input type="file" onChange={(event) => {
-                setImage(returnImage(event));
-                getFileName(returnImageName(event))
-            }}/><br/>
-            <img src={imgURL} width={500}/>
 
-            <h6>{imgURL}</h6>
-            <h6>{fileName}</h6>
-        </div>
+    return (
+        <Router className="App">
+            <div>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/onefile">Mot ten nhieu hinh</Link>
+                        </li>
+                        <li>
+                            <Link to="/multifile">Doi ten hang loat hinh thanh 1</Link>
+                        </li>
+                    </ul>
+                </nav>
+
+                {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+                <Switch>
+                    <Route path="/onefile">
+                        <DownloadMultiFile />
+                    </Route>
+                    <Route path="/multifile">
+                        <ChangeMultiFileName />
+                    </Route>
+                    <Route path="/">
+                        <DownloadMultiFile />
+                    </Route>/
+                </Switch>
+            </div>
+        </Router>
     );
 }
 

@@ -8,7 +8,7 @@ import DownloadMultiFile from "./components/DownloadMultiFile";
 
 ReactDOM.render(
     <React.StrictMode>
-        <DownloadMultiFile/>
+        <App/>
     </React.StrictMode>,
     document.getElementById('root')
 );
