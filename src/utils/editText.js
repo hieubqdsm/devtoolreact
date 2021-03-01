@@ -49,10 +49,11 @@ const CamelCase = (str) => {
 }
 
 const TextToArray = (str) => {
-    return str.split(",");
+    const tmp_str = str.replace(/\n/g, ",");
+    return tmp_str.split(",");
 }
 const  removeAccents = (str) => {
-    var AccentsMap = [
+    const AccentsMap = [
         "aàảãáạăằẳẵắặâầẩẫấậ",
         "AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬ",
         "dđ", "DĐ",
@@ -67,9 +68,9 @@ const  removeAccents = (str) => {
         "yỳỷỹýỵ",
         "YỲỶỸÝỴ"
     ];
-    for (var i=0; i<AccentsMap.length; i++) {
-        var re = new RegExp('[' + AccentsMap[i].substr(1) + ']', 'g');
-        var char = AccentsMap[i][0];
+    for (let i=0; i<AccentsMap.length; i++) {
+        const re = new RegExp('[' + AccentsMap[i].substr(1) + ']', 'g');
+        const char = AccentsMap[i][0];
         str = str.replace(re, char);
     }
     return str;

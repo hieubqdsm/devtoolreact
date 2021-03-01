@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import logo from "../logo.svg";
-import {RefineText, TextToArray, removeAccents} from "../utils/editText";
+import {RefineText, TextToArray} from "../utils/editText";
 
 const returnImage = (event) => {
     return URL.createObjectURL(event.target.files[0]);
@@ -38,7 +38,7 @@ const downloadAllImage = (link, fileName, keywordList) => {
                     console.log(newFileName);
                     a.href = url;
                     a.download = newFileName;
-                    a.click();
+                    // a.click();
                 }
             });
         });
@@ -52,7 +52,7 @@ const DownloadMultiFile = () => {
         <h3>1 Hinh tra ve nhieu file</h3>
         <div>
             <h6>Keyword list</h6>
-            <textarea name="keywordList" style={{width: "250px", height: "50px"}}
+            <textarea name="keywordList" style={{width: "650px", height: "150px"}}
                       onChange={(event) => setKeywordList(onHandleTextInput(event))}/>
         </div>
         <div>
