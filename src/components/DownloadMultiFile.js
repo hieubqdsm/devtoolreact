@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import logo from "../logo.svg";
-import {RefineText, TextToArray} from "../utils/editText";
+import {RefineText, TextToArray, removeAccents} from "../utils/editText";
 
 const returnImage = (event) => {
     return URL.createObjectURL(event.target.files[0]);

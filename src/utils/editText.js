@@ -25,7 +25,9 @@ const RefineText = (raw_text, remove_space, text_format) => {
             refined_text = refined_text.replace(/ /g, "");
             break;
     }
-    return refined_text;
+    return refined_text.normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd').replace(/Đ/g, 'D');
 }
 
 const  TitleCase = (str) => {
@@ -49,5 +51,27 @@ const CamelCase = (str) => {
 const TextToArray = (str) => {
     return str.split(",");
 }
-
-export {RefineText, TitleCase , CamelCase, TextToArray};
+const  removeAccents = (str) => {
+    var AccentsMap = [
+        "aàảãáạăằẳẵắặâầẩẫấậ",
+        "AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬ",
+        "dđ", "DĐ",
+        "eèẻẽéẹêềểễếệ",
+        "EÈẺẼÉẸÊỀỂỄẾỆ",
+        "iìỉĩíị",
+        "IÌỈĨÍỊ",
+        "oòỏõóọôồổỗốộơờởỡớợ",
+        "OÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢ",
+        "uùủũúụưừửữứự",
+        "UÙỦŨÚỤƯỪỬỮỨỰ",
+        "yỳỷỹýỵ",
+        "YỲỶỸÝỴ"
+    ];
+    for (var i=0; i<AccentsMap.length; i++) {
+        var re = new RegExp('[' + AccentsMap[i].substr(1) + ']', 'g');
+        var char = AccentsMap[i][0];
+        str = str.replace(re, char);
+    }
+    return str;
+}
+export {RefineText, TitleCase , CamelCase, TextToArray, removeAccents};
