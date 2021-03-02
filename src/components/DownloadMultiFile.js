@@ -18,7 +18,15 @@ const getFileExtension = (fileName) => {
     const arr_name = fileName.split(".");
     return arr_name[arr_name.length - 1];
 }
-
+const handleUrlExport = (event)=>{
+    const text = event.target.value;
+    const textArray = TextToArray(text);
+    let textOutput = '';
+    for(let i =0; i < textArray.length; i++){
+        textOutput += RefineText(textArray[i], "none", "origin")+" \n ";
+    }
+    return textOutput;
+}
 const downloadAllImage = (link, fileName, keywordList) => {
     const fileExtension = getFileExtension(fileName);
     const keywordArray = TextToArray(keywordList);
@@ -38,7 +46,7 @@ const downloadAllImage = (link, fileName, keywordList) => {
                     console.log(newFileName);
                     a.href = url;
                     a.download = newFileName;
-                    // a.click();
+                    a.click();
                 }
             });
         });
@@ -48,12 +56,13 @@ const DownloadMultiFile = () => {
     const [fileName, getFileName] = useState('default');
     const [fileExtension, debugFileExtension] = useState('None');
     const [keywordList, setKeywordList] = useState([]);
+    const [linkKeyword, setLinkKeyword] = useState([]);
     return <div className="App">
         <h3>1 Hinh tra ve nhieu file</h3>
         <div>
             <h6>Keyword list</h6>
             <textarea name="keywordList" style={{width: "650px", height: "150px"}}
-                      onChange={(event) => setKeywordList(onHandleTextInput(event))}/>
+                      onChange={(event) => {setKeywordList(onHandleTextInput(event)); setLinkKeyword(handleUrlExport(event))}}/>
         </div>
         <div>
             <input type="file" onChange={(event) => {
@@ -71,6 +80,7 @@ const DownloadMultiFile = () => {
             <h6>{imgURL}</h6>
             <h6>{fileName}</h6>
             <h6>{fileExtension}</h6>
+            <div>{linkKeyword}</div>
         </div>
 
 
