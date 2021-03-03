@@ -12,9 +12,9 @@ function App() {
 
     return (
         <Router className="App">
-            <div>
+            <div className="container">
                 <nav>
-                    <ul>
+                    <ul style={{display: "flex"}}>
                         <li>
                             <Link to="/">Home</Link>
                         </li>
