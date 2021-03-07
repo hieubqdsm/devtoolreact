@@ -86,10 +86,10 @@ const DownloadMultiFile = () => {
         </div>
 
         <div style={{ paddingLeft: "50px" }} >
-            {linkKeyword.map(employee => (
-            <p>{employee}</p>
-        ))}
-    </div>
+            {linkKeyword.map(value => (
+                <p>{value}</p>
+            ))}
+        </div>
 
     </div >
 }

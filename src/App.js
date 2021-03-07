@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import DownloadMultiFile from "./components/DownloadMultiFile";
 import ChangeMultiFileName from "./components/ChangeMultiFileName";
+import SEOGenerator from "./components/SEOGenerator";
 function App() {
 
     return (
@@ -24,6 +25,9 @@ function App() {
                         <li>
                             <Link to="/multifile">Doi ten hang loat hinh thanh 1</Link>
                         </li>
+                        <li>
+                            <Link to="/seogenerator">Generate từ khóa SEO</Link>
+                        </li>
                     </ul>
                 </nav>
 
@@ -37,7 +41,10 @@ function App() {
                         <ChangeMultiFileName />
                     </Route>
                     <Route path="/">
-                        <DownloadMultiFile />
+                        <SEOGenerator />
+                    </Route>/
+                    <Route path="/">
+                        <SEOGenerator />
                     </Route>/
                 </Switch>
             </div>
