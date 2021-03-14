@@ -77,7 +77,7 @@ const DownloadMultiFile = () => {
             </div>
             <div>
                 <h4>Debug</h4>
-                <img src={imgURL} width={150} />
+                <img src={imgURL} width={150} alt="Debug Image"/>
                 <h6>{imgURL}</h6>
                 <h6>{fileName}</h6>
                 <h6>{fileExtension}</h6>

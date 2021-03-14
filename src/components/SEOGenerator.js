@@ -12,9 +12,10 @@ const onHandleRawText = (prefix, main, suffix) => {
     for (let i = 0; i < prefixArray.length; i++) {
         for (let j = 0; j < mainArray.length; j++) {
             for (let k = 0; k < suffixArray.length; k++) {
-                const textItem = prefixArray[i] + " "+ mainArray[j] + " " + suffixArray[k];
-                console.log(textItem);
-                textOutput.push(textItem);
+                if (prefixArray[i].length > 0 && mainArray[j].length > 0 && suffixArray[k].length > 0) {
+                    const textItem = prefixArray[i] + " " + mainArray[j] + " " + suffixArray[k];
+                    textOutput.push(textItem);
+                }
             }
         }
     }
@@ -28,8 +29,11 @@ const onHandleLinkText = (prefix, main, suffix) => {
     for (let i = 0; i < prefixArray.length; i++) {
         for (let j = 0; j < mainArray.length; j++) {
             for (let k = 0; k < suffixArray.length; k++) {
-                const textItem = prefixArray[i] + " "+ mainArray[j] + " " + suffixArray[k];
-                textOutput.push(RefineText(textItem, "none", "origin"));
+                if (prefixArray[i].length > 0 && mainArray[j].length > 0 && suffixArray[k].length > 0) {
+                    const textItem = prefixArray[i] + " " + mainArray[j] + " " + suffixArray[k];
+                    textOutput.push(RefineText(textItem, "none", "origin"));
+                }
+
             }
         }
     }
@@ -46,20 +50,26 @@ const SEOGenerator = () => {
             <div style={{ width: "33%" }}>
                 <h4>Tiền tố</h4>
                 <textarea name="textPrefix" style={{ width: "100%", height: "150px" }}
-                    onChange={(event) => { setPreFix(onHandleTextInput(event)); setRawText(onHandleRawText(preFixText, mainText, suffixText));
-                        setLinkText(onHandleLinkText(preFixText, mainText, suffixText));}}></textarea>
+                    onChange={(event) => {
+                        setPreFix(onHandleTextInput(event)); setRawText(onHandleRawText(preFixText, mainText, suffixText));
+                        setLinkText(onHandleLinkText(preFixText, mainText, suffixText));
+                    }}></textarea>
             </div>
             <div style={{ width: "33%" }}>
                 <h4>Từ chính</h4>
                 <textarea name="textMain" style={{ width: "100%", height: "150px" }}
-                    onChange={(event) => { setMainText(onHandleTextInput(event)); setRawText(onHandleRawText(preFixText, mainText, suffixText));
-                        setLinkText(onHandleLinkText(preFixText, mainText, suffixText)); }}></textarea>
+                    onChange={(event) => {
+                        setMainText(onHandleTextInput(event)); setRawText(onHandleRawText(preFixText, mainText, suffixText));
+                        setLinkText(onHandleLinkText(preFixText, mainText, suffixText));
+                    }}></textarea>
             </div>
             <div style={{ width: "33%" }}>
-                <h4>Từ chính</h4>
+                <h4>Hậu tố</h4>
                 <textarea name="textSuffix" style={{ width: "100%", height: "150px" }}
-                    onChange={(event) => { setSuffixText(onHandleTextInput(event)); setRawText(onHandleRawText(preFixText, mainText, suffixText));
-                        setLinkText(onHandleLinkText(preFixText, mainText, suffixText)); }}></textarea>
+                    onChange={(event) => {
+                        setSuffixText(onHandleTextInput(event)); setRawText(onHandleRawText(preFixText, mainText, suffixText));
+                        setLinkText(onHandleLinkText(preFixText, mainText, suffixText));
+                    }}></textarea>
             </div>
         </div>
         <div>
@@ -74,7 +84,7 @@ const SEOGenerator = () => {
                     </div>
                 </div>
                 <div style={{ width: "50%" }}>
-                    <h4>Từ khóa để làm Link</h4>
+                    <h4>Từ khóa Link</h4>
                     <div style={{ paddingLeft: "50px" }} >
                         {linkText.map(value => (
                             <p key={value}>{value}</p>
